@@ -1,0 +1,12 @@
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.env
+.env.*
+*.pfx
+*.publishsettings
+**/Properties/PublishProfiles/
