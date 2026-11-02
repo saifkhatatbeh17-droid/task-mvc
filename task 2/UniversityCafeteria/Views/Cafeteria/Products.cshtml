@@ -1,0 +1,37 @@
+@{
+    string[] products = { "Water", "Orange Juice", "Coffee", "Sandwich", "Chocolate" };
+}
+
+<link rel="stylesheet" href="~/css/products.css" />
+
+<h2>Cafeteria Products</h2>
+
+@if (products.Length > 0)
+{
+    <p>Products are available:</p>
+    <ul class="product-list">
+        @foreach (string product in products)
+        {
+            <li>@product</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No products are available.</p>
+}
+
+@if (products.Length >= 3)
+{
+    <p>We have enough Products.</p>
+}
+else
+{
+    <p>We need more Products.</p>
+}
+
+@section Scripts {
+    <script>
+        alert("Welcome to the Products Page!");
+    </script>
+}

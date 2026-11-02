@@ -1,0 +1,20 @@
+body {
+    background-color: #f0f6ff;
+}
+
+h1, h2 {
+    color: #174a7e;
+}
+
+.product-list {
+    max-width: 480px;
+    padding: 20px 40px;
+    background-color: white;
+    border: 1px solid #c9d9ec;
+    border-radius: 8px;
+}
+
+.product-list li {
+    padding: 8px 0;
+    color: #243b53;
+}
