@@ -1,0 +1,10 @@
+<h1>University Cafeteria Supply Management</h1>
+<h2>Product Categories</h2>
+<ul class="list-group mb-4">
+    @foreach (string category in ViewBag.Categories)
+    {
+        <li class="list-group-item">@category</li>
+    }
+</ul>
+<a class="btn btn-primary" asp-controller="Supply" asp-action="CreateRequest">Create a supply request</a>
+<a class="btn btn-outline-secondary" asp-controller="Supply" asp-action="CheckQuantity" asp-route-quantity="20">Check quantity</a>

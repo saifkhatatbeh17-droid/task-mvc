@@ -1,0 +1,8 @@
+<h1>Check Quantity</h1>
+<form asp-controller="Supply" asp-action="CheckQuantity" method="get" class="mb-3">
+    <label class="form-label" for="quantity">Quantity</label>
+    <input class="form-control mb-3" type="number" id="quantity" name="quantity" min="1" step="1" value="@ViewBag.Quantity" required />
+    <button class="btn btn-primary" type="submit">Check</button>
+</form>
+<p>Quantity: @ViewBag.Quantity</p>
+<p class="alert alert-info">@ViewBag.Classification</p>

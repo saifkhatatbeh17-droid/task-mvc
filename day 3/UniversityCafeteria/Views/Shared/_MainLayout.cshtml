@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University Cafeteria</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <header class="bg-dark text-white p-3 mb-4">
+        <div class="container">
+            <h1 class="h3">University Cafeteria Supply Management System</h1>
+            <nav class="d-flex flex-wrap gap-3">
+                <a class="text-white" asp-controller="Supply" asp-action="Index">Home</a>
+                <a class="text-white" asp-controller="Supply" asp-action="Products">Products</a>
+                <a class="text-white" asp-controller="Supply" asp-action="Suppliers">Suppliers</a>
+                <a class="text-white" asp-controller="Supply" asp-action="CreateRequest">Create Request</a>
+                <a class="text-white" asp-controller="Supply" asp-action="About">About</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container pb-4">
+        @RenderBody()
+    </main>
+    <footer class="container border-top py-3">University Cafeteria &copy; 2026</footer>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
