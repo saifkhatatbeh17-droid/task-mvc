@@ -1,0 +1,29 @@
+@model List<UniversityCafeteria.Models.SupplyRequest>
+<h1>My Supply Requests</h1>
+@if (TempData["Message"] is string message)
+{
+    <p class="alert alert-success">@message</p>
+}
+@if (Model.Count == 0)
+{
+    <p>No confirmed requests yet.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead><tr><th>Request ID</th><th>Number of Products</th><th>Subtotal (JD)</th><th>Preparation Fee (JD)</th><th>Discount (JD)</th><th>Final Total (JD)</th><th>Status</th></tr></thead>
+            <tbody>
+                @foreach (var request in Model)
+                {
+                    <tr>
+                        <td>@request.RequestId</td><td>@request.Items.Count</td>
+                        <td>@request.Subtotal.ToString("0.00")</td><td>@request.PreparationFee.ToString("0.00")</td>
+                        <td>@request.Discount.ToString("0.00")</td><td>@request.FinalTotal.ToString("0.00")</td><td>@request.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+<a href="@Url.Action("Index", "SupplyRequest")" class="btn btn-primary">Create Supply Request</a>

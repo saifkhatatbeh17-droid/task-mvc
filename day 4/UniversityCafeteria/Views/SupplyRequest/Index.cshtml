@@ -1,0 +1,89 @@
+@model UniversityCafeteria.Models.SupplyRequest
+<h1>Create Supply Request</h1>
+@if (TempData["Error"] is string error)
+{
+    <p class="alert alert-danger">@error</p>
+}
+@if (TempData["Message"] is string message)
+{
+    <p class="alert alert-success">@message</p>
+}
+<p>Your preferred request priority is @ViewBag.PreferredPriority.</p>
+<h2 class="h4">Add a product</h2>
+<p>The priority selected when adding a product applies to the whole request.</p>
+<form action="@Url.Action("AddItem", "SupplyRequest")" method="post">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label for="productName" class="form-label">Product Name</label>
+        <input id="productName" name="productName" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <input id="category" name="category" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input id="quantity" name="quantity" type="number" min="1" step="1" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="unitPrice" class="form-label">Unit Price (JD)</label>
+        <input id="unitPrice" name="unitPrice" type="number" min="0.01" step="0.01" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="priority" class="form-label">Request Priority</label>
+        <select id="priority" name="priority" class="form-select">
+            @foreach (string priority in new string[] { "Normal", "Urgent", "Emergency" })
+            {
+                if (priority == (string)ViewBag.SelectedPriority)
+                {
+                    <option value="@priority" selected>@priority</option>
+                }
+                else
+                {
+                    <option value="@priority">@priority</option>
+                }
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Item</button>
+</form>
+<h2 class="h4 mt-4">Current Draft</h2>
+@if (Model.Items.Count == 0)
+{
+    <p>No products added yet.</p>
+}
+else
+{
+    <ul>
+        @foreach (var item in Model.Items)
+        {
+            <li>@item.ProductName - Quantity: @item.Quantity - Unit price: @item.UnitPrice.ToString("0.00") JD</li>
+        }
+    </ul>
+    <p>Draft priority: @Model.Priority</p>
+    <a href="@Url.Action("Review", "SupplyRequest")" class="btn btn-outline-primary">Review Draft</a>
+    <form action="@Url.Action("ClearDraft", "SupplyRequest")" method="post" class="mt-2">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-outline-danger">Clear Draft</button>
+    </form>
+}
+<h2 class="h4 mt-4">Save Default Priority</h2>
+<p>This preference is used for new drafts. It does not change an existing draft.</p>
+<form action="@Url.Action("SavePreference", "SupplyRequest")" method="post">
+    @Html.AntiForgeryToken()
+    <label for="preferredPriority" class="form-label">Preferred Priority</label>
+    <select id="preferredPriority" name="priority" class="form-select mb-3">
+        @foreach (string priority in new string[] { "Normal", "Urgent", "Emergency" })
+        {
+            if (priority == (string)ViewBag.PreferredPriority)
+            {
+                <option value="@priority" selected>@priority</option>
+            }
+            else
+            {
+                <option value="@priority">@priority</option>
+            }
+        }
+    </select>
+    <button type="submit" class="btn btn-secondary">Save Preference</button>
+</form>

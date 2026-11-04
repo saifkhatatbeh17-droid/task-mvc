@@ -1,0 +1,27 @@
+<h1>Create Supply Request</h1>
+<form asp-controller="Supply" asp-action="SubmitRequest" method="post">
+    <div class="mb-3">
+        <label class="form-label" for="employeeName">Employee Name</label>
+        <input class="form-control" type="text" id="employeeName" name="EmployeeName" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="productName">Product Name</label>
+        <select class="form-select" id="productName" name="ProductName" required>
+            <option value="">Select a product</option>
+            <option>Water</option>
+            <option>Orange Juice</option>
+            <option>Coffee</option>
+            <option>Sandwich</option>
+            <option>Chocolate</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="quantity">Quantity</label>
+        <input class="form-control" type="number" id="quantity" name="Quantity" min="1" step="1" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="requiredDate">Required Date</label>
+        <input class="form-control" type="date" id="requiredDate" name="RequiredDate" required />
+    </div>
+    <button class="btn btn-primary" type="submit">Submit Request</button>
+</form>

@@ -1,0 +1,8 @@
+<h1>@ViewBag.PageTitle</h1>
+<p>Number of suppliers: @ViewBag.NumberOfSuppliers</p>
+<ul class="list-group">
+    @foreach (string supplier in ViewBag.Suppliers)
+    {
+        <li class="list-group-item">@supplier</li>
+    }
+</ul>
