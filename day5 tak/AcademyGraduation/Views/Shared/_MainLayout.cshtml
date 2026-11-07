@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academy Graduation Supplies</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <header class="bg-dark text-white p-3 mb-4">
+        <nav class="container d-flex flex-wrap gap-3">
+            <a class="text-white" href="@Url.Action("Index", "Graduation")">Create Supply Request</a>
+            <a class="text-white" href="@Url.Action("Review", "Graduation")">Review Request</a>
+            <a class="text-white" href="@Url.Action("About", "Graduation")">About</a>
+        </nav>
+    </header>
+    <main class="container pb-4">@RenderBody()</main>
+    <footer class="container border-top py-3">Orange Coding Academy - Graduation Supplies</footer>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

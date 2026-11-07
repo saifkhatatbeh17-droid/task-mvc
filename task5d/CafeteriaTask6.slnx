@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Code First Approach/">
+    <Project Path="Code First Approach/CafeteriaCodeFirst/CafeteriaCodeFirst.csproj" />
+  </Folder>
+  <Folder Name="/Database First Approach/">
+    <Project Path="Database First Approach/CafeteriaDatabaseFirst/CafeteriaDatabaseFirst.csproj" />
+  </Folder>
+</Solution>

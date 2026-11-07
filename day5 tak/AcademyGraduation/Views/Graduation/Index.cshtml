@@ -1,0 +1,58 @@
+@using AcademyGraduation.Models
+@model List<Category>
+@{
+    var choices = (List<OfferChoice>)ViewBag.Choices;
+}
+<h1>Create Graduation Supply Request</h1>
+@if (TempData["Error"] is string error)
+{
+    <p class="alert alert-danger">@error</p>
+}
+@if (TempData["Message"] is string message)
+{
+    <p class="alert alert-success">@message</p>
+}
+<form action="@Url.Action("SetPhase", "Graduation")" method="post" class="mb-4">
+    @Html.AntiForgeryToken()
+    <label for="phase">Learning phase</label>
+    <select id="phase" name="phase" class="form-select mb-2">
+        @for (int i = 1; i <= 3; i++)
+        {
+            <option value="@i" selected="@(i == (int)ViewBag.Phase)">Phase @i</option>
+        }
+    </select>
+    <button class="btn btn-secondary">Open Phase</button>
+</form>
+<p>Current phase: @ViewBag.Phase. Select one offer manually from each category. Changing an offer replaces the previous selection in that category.</p>
+<p>Phase 1: separate Session keys. Phase 2: one list in Session. Phase 3: database offers with the same selection rules. Each phase keeps its own selections.</p>
+@foreach (var category in Model)
+{
+    <h2 class="h4 mt-4">@category.Name</h2>
+    <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead><tr><th>Supplier</th><th>Offer</th><th>Quantity</th><th>Unit Price (JD)</th><th>Selection</th></tr></thead>
+        <tbody>
+        @foreach (var supplier in category.Suppliers)
+        {
+            bool selected = choices.Any(c => c.CategoryId == category.Id && c.OfferId == supplier.Offer.Id);
+            <tr>
+                <td>@supplier.Name</td><td>@supplier.Offer.Name</td><td>@supplier.Offer.Quantity</td><td>@supplier.Offer.UnitPrice.ToString("0.00")</td>
+                <td>
+                    <form action="@Url.Action("SelectOffer", "Graduation")" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="categoryId" value="@category.Id" />
+                        <input type="hidden" name="offerId" value="@supplier.Offer.Id" />
+                        <button class="btn @(selected ? "btn-success" : "btn-outline-primary")">@(selected ? "Selected" : "Select Offer")</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    </div>
+}
+<a class="btn btn-primary" href="@Url.Action("Review", "Graduation")">Review Request</a>
+<form action="@Url.Action("ClearSelections", "Graduation")" method="post" class="mt-2">
+    @Html.AntiForgeryToken()
+    <button class="btn btn-outline-danger">Clear Current Selections</button>
+</form>
