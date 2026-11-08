@@ -1,0 +1,18 @@
+@model List<CafeteriaCodeFirst.Models.Category>
+<h1>Category List</h1>
+@Html.ActionLink("Add New", "Create")
+<table class="table table-bordered mt-3">
+    <thead><tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr></thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => item.Name)</td>
+            <td>@Html.DisplayFor(m => item.Description)</td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,36 @@
+@model CafeteriaCodeFirst.Models.Product
+@using Microsoft.AspNetCore.Mvc.Rendering
+<h1>Add Product</h1>
+@using (Html.BeginForm("Create", "Product", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control", type = "number", min = "0.01", step = "0.01" })
+        @Html.ValidationMessageFor(m => m.Price)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Quantity)
+        @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", type = "number", min = "0", step = "1" })
+        @Html.ValidationMessageFor(m => m.Quantity)
+    </div>
+    <p>Add a category and supplier first if the lists are empty.</p>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.CategoryId, "Category")
+        @Html.DropDownListFor(m => m.CategoryId, (SelectList)ViewBag.Categories, "Select Category", new { @class = "form-select" })
+        @Html.ValidationMessageFor(m => m.CategoryId)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.SupplierId, "Supplier")
+        @Html.DropDownListFor(m => m.SupplierId, (SelectList)ViewBag.Suppliers, "Select Supplier", new { @class = "form-select" })
+        @Html.ValidationMessageFor(m => m.SupplierId)
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+@Html.ActionLink("Back to List", "Index")
