@@ -1,0 +1,20 @@
+@model Category
+@using Microsoft.AspNetCore.Mvc.Rendering
+<h1>Create Category</h1>
+@using (Html.BeginForm("Create", "Category", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { type = "text", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description)
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+}
+@Html.ActionLink("Back to List", "Index")

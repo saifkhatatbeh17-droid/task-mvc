@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cafeteria Task 7</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <nav class="container pt-3">
+        @Html.ActionLink("Categories", "Index", "Category") |
+        @Html.ActionLink("Suppliers", "Index", "Supplier") |
+        @Html.ActionLink("Products", "Index", "Product") |
+        @Html.ActionLink("Employees", "Index", "Employee") |
+        @Html.ActionLink("Orders", "Index", "Order")
+    </nav>
+    <main class="container py-4">@RenderBody()</main>
+</body>
+</html>

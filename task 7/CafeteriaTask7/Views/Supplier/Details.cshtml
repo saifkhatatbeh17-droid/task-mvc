@@ -1,0 +1,12 @@
+@model Supplier
+<h1>Supplier Details</h1>
+<dl>
+<dt>Id</dt><dd>@Model.Id</dd>
+<dt>Name</dt><dd>@Html.DisplayFor(m => m.Name)</dd>
+<dt>Phone</dt><dd>@Html.DisplayFor(m => m.Phone)</dd>
+<dt>Email</dt><dd>@Html.DisplayFor(m => m.Email)</dd>
+<dt>Address</dt><dd>@Html.DisplayFor(m => m.Address)</dd>
+<dt>Products.Count</dt><dd>@Html.DisplayFor(m => m.Products.Count)</dd>
+</dl>
+@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+@Html.ActionLink("Back to List", "Index")

@@ -1,0 +1,14 @@
+@model Product
+<h1>Product Details</h1>
+<dl>
+<dt>Id</dt><dd>@Model.Id</dd>
+<dt>Name</dt><dd>@Html.DisplayFor(m => m.Name)</dd>
+<dt>Description</dt><dd>@Html.DisplayFor(m => m.Description)</dd>
+<dt>Price</dt><dd>@Html.DisplayFor(m => m.Price)</dd>
+<dt>Quantity</dt><dd>@Html.DisplayFor(m => m.Quantity)</dd>
+<dt>Category.Name</dt><dd>@Html.DisplayFor(m => m.Category!.Name)</dd>
+<dt>Supplier.Name</dt><dd>@Html.DisplayFor(m => m.Supplier!.Name)</dd>
+<dt>Stock Status</dt><dd>@(Model.Quantity < 5 ? "Low Stock" : "Available")</dd>
+</dl>
+@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+@Html.ActionLink("Back to List", "Index")

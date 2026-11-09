@@ -1,0 +1,12 @@
+@model Order
+<h1>Order Details</h1>
+<dl>
+<dt>Id</dt><dd>@Model.Id</dd>
+<dt>CustomerName</dt><dd>@Html.DisplayFor(m => m.CustomerName)</dd>
+<dt>OrderDate</dt><dd>@Html.DisplayFor(m => m.OrderDate)</dd>
+<dt>TotalPrice</dt><dd>@Html.DisplayFor(m => m.TotalPrice)</dd>
+<dt>Status</dt><dd>@Html.DisplayFor(m => m.Status)</dd>
+<dt>Employee.FullName</dt><dd>@Html.DisplayFor(m => m.Employee!.FullName)</dd>
+</dl>
+@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+@Html.ActionLink("Back to List", "Index")

@@ -1,0 +1,14 @@
+@model Employee
+<h1>Employee Details</h1>
+<dl>
+<dt>Id</dt><dd>@Model.Id</dd>
+<dt>FullName</dt><dd>@Html.DisplayFor(m => m.FullName)</dd>
+<dt>Phone</dt><dd>@Html.DisplayFor(m => m.Phone)</dd>
+<dt>Email</dt><dd>@Html.DisplayFor(m => m.Email)</dd>
+<dt>Position</dt><dd>@Html.DisplayFor(m => m.Position)</dd>
+<dt>Salary</dt><dd>@Html.DisplayFor(m => m.Salary)</dd>
+<dt>HireDate</dt><dd>@Html.DisplayFor(m => m.HireDate)</dd>
+<dt>Orders.Count</dt><dd>@Html.DisplayFor(m => m.Orders.Count)</dd>
+</dl>
+@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+@Html.ActionLink("Back to List", "Index")

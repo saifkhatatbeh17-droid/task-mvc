@@ -1,0 +1,36 @@
+@model Order
+@using Microsoft.AspNetCore.Mvc.Rendering
+<h1>Edit Order</h1>
+@using (Html.BeginForm("Edit", "Order", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.Id)
+    <div class="mb-3">
+        @Html.LabelFor(m => m.CustomerName)
+        @Html.TextBoxFor(m => m.CustomerName, new { type = "text", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerName)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.OrderDate)
+        @Html.TextBoxFor(m => m.OrderDate, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.OrderDate)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.TotalPrice)
+        @Html.TextBoxFor(m => m.TotalPrice, new { type = "number", step = "0.01", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TotalPrice)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Status)
+        @Html.TextBoxFor(m => m.Status, new { type = "text", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Status)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.EmployeeId)
+        @Html.DropDownListFor(m => m.EmployeeId, (SelectList)ViewBag.Employees, "Choose Employee", new { @class = "form-select" })
+        @Html.ValidationMessageFor(m => m.EmployeeId)
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+}
+@Html.ActionLink("Back to List", "Index")

@@ -1,0 +1,40 @@
+@model Product
+@using Microsoft.AspNetCore.Mvc.Rendering
+<h1>Create Product</h1>
+@using (Html.BeginForm("Create", "Product", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { type = "text", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { type = "number", step = "0.01", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Price)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Quantity)
+        @Html.TextBoxFor(m => m.Quantity, new { type = "number", step = "1", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Quantity)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.CategoryId)
+        @Html.DropDownListFor(m => m.CategoryId, (SelectList)ViewBag.Categories, "Choose Category", new { @class = "form-select" })
+        @Html.ValidationMessageFor(m => m.CategoryId)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.SupplierId)
+        @Html.DropDownListFor(m => m.SupplierId, (SelectList)ViewBag.Suppliers, "Choose Supplier", new { @class = "form-select" })
+        @Html.ValidationMessageFor(m => m.SupplierId)
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+}
+@Html.ActionLink("Back to List", "Index")
