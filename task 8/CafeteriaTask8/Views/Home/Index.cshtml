@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<h1>University Cafeteria</h1>
+<p>Supply request management. Register to create requests, or sign in if you already have an account.</p>
+@if (User.Identity?.IsAuthenticated != true)
+{
+    <p>
+        <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Register</a>
+        <a class="btn btn-outline-primary" asp-controller="Account" asp-action="Login">Login</a>
+    </p>
+    <p class="text-muted">Super Admin for testing: superadmin@cafeteria.com / Admin123</p>
+}
+else
+{
+    <p>Signed in as <strong>@User.Identity.Name</strong>.</p>
+    <p>
+        <a asp-controller="Product" asp-action="Index">View products</a>
+        <a asp-controller="SupplyRequest" asp-action="Index">View requests</a>
+    </p>
+}

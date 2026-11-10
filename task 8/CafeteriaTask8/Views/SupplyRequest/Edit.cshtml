@@ -1,0 +1,60 @@
+@model RequestFormViewModel
+@{
+    ViewData["Title"] = "Edit Request";
+}
+<h1>Edit Supply Request</h1>
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (Model.CanChangeStatus)
+    {
+        <div class="mb-3 col-md-3">
+            <label asp-for="Status"></label>
+            <select asp-for="Status" class="form-control">
+                <option>Pending</option>
+                <option>Approved</option>
+                <option>Rejected</option>
+            </select>
+        </div>
+    }
+    else
+    {
+        <input type="hidden" asp-for="Status" />
+        <p>Status: <strong>@Model.Status</strong></p>
+    }
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Available</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Lines.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model.Lines[i].ProductName
+                        <input type="hidden" asp-for="Lines[i].ProductId" />
+                    </td>
+                    <td>@Model.Lines[i].Price.ToString("0.00")</td>
+                    <td>@Model.Lines[i].Available</td>
+                    <td>
+                        @if (Model.CanChangeItems)
+                        {
+                            <input asp-for="Lines[i].Quantity" class="form-control" />
+                        }
+                        else
+                        {
+                            @Model.Lines[i].Quantity
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a asp-action="Index">Cancel</a>
+</form>

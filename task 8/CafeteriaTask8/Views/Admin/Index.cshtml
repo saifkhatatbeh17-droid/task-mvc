@@ -1,0 +1,35 @@
+@model List<UserRoleViewModel>
+@{
+    ViewData["Title"] = "Users";
+}
+<h1>Users</h1>
+@if (TempData["Error"] is string error)
+{
+    <p class="alert alert-danger">@error</p>
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.Email</td>
+                <td>@item.Role</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Change Role</a>
+                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                        <button class="btn btn-link text-danger p-0" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

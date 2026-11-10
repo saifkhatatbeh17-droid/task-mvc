@@ -1,0 +1,35 @@
+@model RequestFormViewModel
+@{
+    ViewData["Title"] = "New Request";
+}
+<h1>New Supply Request</h1>
+<p>Enter a quantity for each product you need. Leave 0 if you do not want that product.</p>
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Available</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Lines.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model.Lines[i].ProductName
+                        <input type="hidden" asp-for="Lines[i].ProductId" />
+                    </td>
+                    <td>@Model.Lines[i].Price.ToString("0.00")</td>
+                    <td>@Model.Lines[i].Available</td>
+                    <td><input asp-for="Lines[i].Quantity" class="form-control" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button class="btn btn-primary" type="submit">Submit Request</button>
+    <a asp-action="Index">Cancel</a>
+</form>

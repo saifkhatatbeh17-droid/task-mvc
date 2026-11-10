@@ -1,0 +1,23 @@
+@model UserRoleViewModel
+@{
+    ViewData["Title"] = "Change Role";
+}
+<h1>Change Role</h1>
+<p><strong>@Model.FullName</strong> — @Model.Email</p>
+<form asp-action="Edit" method="post" class="col-md-4">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="FullName" />
+    <input type="hidden" asp-for="Email" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="Role"></label>
+        <select asp-for="Role" class="form-control">
+            <option>User</option>
+            <option>Admin</option>
+            <option>SuperAdmin</option>
+        </select>
+        <span asp-validation-for="Role" class="text-danger"></span>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a asp-action="Index">Cancel</a>
+</form>

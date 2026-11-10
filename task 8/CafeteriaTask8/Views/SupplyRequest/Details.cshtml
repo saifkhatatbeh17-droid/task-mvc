@@ -1,0 +1,31 @@
+@model SupplyRequest
+@{
+    ViewData["Title"] = "Request Details";
+}
+<h1>Request #@Model.Id</h1>
+<p><strong>Date:</strong> @Model.RequestDate.ToString("yyyy-MM-dd HH:mm")</p>
+<p><strong>User:</strong> @Model.User?.FullName (@Model.User?.Email)</p>
+<p><strong>Status:</strong> @Model.Status</p>
+<p><strong>Total:</strong> @Model.TotalPrice.ToString("0.00")</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Line Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Product?.Name</td>
+                <td>@item.Price.ToString("0.00")</td>
+                <td>@item.Quantity</td>
+                <td>@((item.Price * item.Quantity).ToString("0.00"))</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index">Back</a>
